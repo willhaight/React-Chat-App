@@ -10,23 +10,17 @@ export default function Chat() {
     //pull messages and append
     const update = async () => {
         projectFirestore.collection("messages")
-            .orderBy("timestamp", "desc")
-            .onSnapshot((snapshot) => {
-                console.log(snapshot)
+            .orderBy("time", "desc")
+            .onSnapshot((res) => {
+                document.getElementById('messageBoard').innerHTML = null
+                res.docs.forEach(doc => {
+                    console.log(doc.data().time)
+                    document.getElementById('messageBoard').innerHTML += `<p>` + doc.data().author + `: ` + doc.data().wrote + `</p>`
+                })
             });
 
 
-        // try {
-        //     let res = await projectFirestore.collection('messages').get()
-        //     console.log(res.docs)
-        //     document.getElementById('messageBoard').innerHTML = null
-        //     res.docs.forEach(doc => {
-        //         console.log(doc.data().time)
-        //         document.getElementById('messageBoard').innerHTML += `<p>` + doc.data().author + `: ` + doc.data().wrote + `</p>`
-        //     })
-        // } catch (err) {
-        //     console.log(err)
-        // }
+
     }
     update()
 
