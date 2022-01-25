@@ -6,9 +6,9 @@ import { projectAuth } from '../../firebase/config'
 
 
 
-export default function SignIn() {
+export default function newAcc() {
 
-    async function login() {
+    async function signup() {
         let email = document.getElementById('email').value
         let password = document.getElementById('password').value
 
@@ -16,7 +16,7 @@ export default function SignIn() {
 
         console.log(email, password)
         try {
-            const res = await projectAuth.signInWithEmailAndPassword(email, password)
+            const res = await projectAuth.createUserWithEmailAndPassword(email, password)
 
             console.log(res.user.email)
             document.location.href = nextUrl
@@ -40,7 +40,7 @@ export default function SignIn() {
                 <Nav />
             </div>
             <div className="heading">
-                <h1>Sign In Here</h1>
+                <h1>Create An Account</h1>
             </div>
             <div className="content">
                 <div className="sign-in-form">
@@ -49,7 +49,7 @@ export default function SignIn() {
                     <label>Password</label>
                     <input type="password" placeholder='Password' id="password"></input>
 
-                    <button onClick={login}>Enter Chat</button>
+                    <button onClick={signup}>Sign Up</button>
 
                 </div>
             </div>

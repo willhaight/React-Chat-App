@@ -1,4 +1,4 @@
-.messageBoard{
+#messageBoard{
     max-width: 100%;
     min-height: 20vw;
     max-height: 60vw;
@@ -7,6 +7,8 @@
     padding-top:5vw;
     padding-left:5vw;
     padding-right:5vw;
+    display:flex;
+    flex-direction: column-reverse;
 }
 .controlCenter {
     margin-top: 5vw;

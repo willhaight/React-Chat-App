@@ -2,6 +2,7 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyACNfeuR7IN_8wJHxD1ZpnvfwIWufu9NVc",
     authDomain: "react-chat-app-49e72.firebaseapp.com",
@@ -18,7 +19,9 @@ firebase.initializeApp(firebaseConfig)
 const projectFirestore = firebase.firestore()
 const projectAuth = firebase.auth()
 
+const timestamp = firebase.firestore.FieldValue.serverTimestamp
 
 
-export { projectFirestore, projectAuth }
+
+export { projectFirestore, projectAuth, timestamp }
 

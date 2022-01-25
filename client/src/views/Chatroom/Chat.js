@@ -1,7 +1,51 @@
 import React from "react";
 import Nav from '../../components/Naviagtion/Navigation'
 import '../Chatroom/Chat.css'
+import { projectFirestore } from "../../firebase/config";
+import { projectAuth } from "../../firebase/config";
+import { timestamp } from "../../firebase/config";
+
+
 export default function Chat() {
+    //pull messages and append
+    const update = async () => {
+        projectFirestore.collection("messages")
+            .orderBy("timestamp", "desc")
+            .onSnapshot((snapshot) => {
+                console.log(snapshot)
+            });
+
+
+        // try {
+        //     let res = await projectFirestore.collection('messages').get()
+        //     console.log(res.docs)
+        //     document.getElementById('messageBoard').innerHTML = null
+        //     res.docs.forEach(doc => {
+        //         console.log(doc.data().time)
+        //         document.getElementById('messageBoard').innerHTML += `<p>` + doc.data().author + `: ` + doc.data().wrote + `</p>`
+        //     })
+        // } catch (err) {
+        //     console.log(err)
+        // }
+    }
+    update()
+
+
+    //write message
+    const writeMessage = async () => {
+
+        let writer = projectAuth.currentUser.email
+        let message = { wrote: document.getElementById('chatValue').value, author: writer, time: timestamp() }
+
+        try {
+            await projectFirestore.collection('messages').add(message)
+            projectFirestore.collection('messages').orderBy('time')
+            document.getElementById('chatValue').value = null
+            update()
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
 
     return (
@@ -13,24 +57,14 @@ export default function Chat() {
                 <h1>Welcome to the Chatroom</h1>
             </div>
             <div className="content">
-                <div className="messageBoard">
-                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
-                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
-                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
-                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
-                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
-                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
-                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
-                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
-                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
-                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
-                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
-                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
+                <div id="messageBoard">
+
 
                 </div>
                 <div className="controlCenter">
                     <input type="text" id="chatValue" placeholder="write a message..."></input>
-                    <button>Send</button>
+                    <button onClick={writeMessage}>Send</button>
+                    <button onClick={update}>up</button>
                 </div>
             </div>
         </div>
