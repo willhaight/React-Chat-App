@@ -1,6 +1,6 @@
 import React from "react";
 import Nav from '../../components/Naviagtion/Navigation'
-
+import '../Chatroom/Chat.css'
 export default function Chat() {
 
 
@@ -13,7 +13,25 @@ export default function Chat() {
                 <h1>Welcome to the Chatroom</h1>
             </div>
             <div className="content">
-                <p>This is the Chat</p>
+                <div className="messageBoard">
+                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
+                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
+                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
+                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
+                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
+                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
+                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
+                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
+                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
+                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
+                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
+                    <p> Lorem ipsum dolor sit amet, consectetur adip</p>
+
+                </div>
+                <div className="controlCenter">
+                    <input type="text" id="chatValue" placeholder="write a message..."></input>
+                    <button>Send</button>
+                </div>
             </div>
         </div>
     );

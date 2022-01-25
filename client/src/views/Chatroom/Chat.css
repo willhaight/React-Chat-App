@@ -1,0 +1,23 @@
+.messageBoard{
+    max-width: 100%;
+    min-height: 20vw;
+    max-height: 60vw;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-top:5vw;
+    padding-left:5vw;
+    padding-right:5vw;
+}
+.controlCenter {
+    margin-top: 5vw;
+    display:flex;
+    justify-content: center;
+}
+.controlCenter input {
+    border-radius: 25%;
+}
+.controlCenter button {
+    border-radius: 25%;
+    background-color: rgb(108, 162, 58);
+    margin-left:2vw;
+}

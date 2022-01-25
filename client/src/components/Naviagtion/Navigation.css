@@ -1,6 +1,6 @@
 .Navigation{
     display:flex;
-    width:10em;
+    width:20em;
     justify-content: space-around;
 }
 .Navigation a{
@@ -42,4 +42,11 @@ body {
     padding-top:5vw;
     margin-left:5vw;
     margin-right:5vw;
+}
+.btns button {
+    color:black;
+    background-color: rgb(95, 196, 162);
+    border:none;
+    margin-top: 2.5vw;
+    font-size: 2.25vw;
 }

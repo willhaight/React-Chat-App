@@ -1,14 +1,37 @@
 import React from 'react';
 import Nav from '../../components/Naviagtion/Navigation'
 import '../Login/Login.css'
-import { Link } from 'react-router-dom'
+import { projectAuth } from '../../firebase/config'
+//import { Link } from 'react-router-dom'
 
 
 
 export default function SignIn() {
-    const handleClick = () => {
-        console.log('clicked login')
+
+    async function login() {
+        let email = document.getElementById('email').value
+        let password = document.getElementById('password').value
+
+        let nextUrl = document.location.origin + '/chat'
+
+        console.log(email, password)
+        try {
+            const res = await projectAuth.signInWithEmailAndPassword(email, password)
+
+            console.log(res.user.email)
+            document.location.href = nextUrl
+        }
+        catch (err) {
+
+            console.log(err.message)
+
+
+        }
     }
+
+
+
+
 
 
     return (
@@ -22,10 +45,11 @@ export default function SignIn() {
             <div className="content">
                 <div className="sign-in-form">
                     <label>Name</label>
-                    <input type="text" placeholder='Username'></input>
-                    <Link to={`/chat`}>
-                        <button onClick={handleClick}>Enter Chat</button>
-                    </Link>
+                    <input type="email" placeholder='Email' id="email"></input>
+                    <input type="password" placeholder='Password' id="password"></input>
+
+                    <button onClick={login}>Enter Chat</button>
+
                 </div>
             </div>
         </div>
