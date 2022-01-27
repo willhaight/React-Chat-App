@@ -24,7 +24,7 @@ export default function SignIn() {
         catch (err) {
 
             console.log(err.message)
-
+            document.getElementById('error').innerHTML = `<p>` + err.message + `</p>`
 
         }
     }
@@ -48,7 +48,7 @@ export default function SignIn() {
                     <input type="email" placeholder='Email' id="email"></input>
                     <label>Password</label>
                     <input type="password" placeholder='Password' id="password"></input>
-
+                    <div id="error"></div>
                     <button onClick={login}>Enter Chat</button>
 
                 </div>

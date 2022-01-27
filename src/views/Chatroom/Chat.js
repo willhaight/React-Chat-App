@@ -7,14 +7,16 @@ import { timestamp } from "../../firebase/config";
 
 
 export default function Chat() {
+
     //pull messages and append
     const update = async () => {
+
         projectFirestore.collection("messages")
             .orderBy("time", "desc")
             .onSnapshot((res) => {
                 document.getElementById('messageBoard').innerHTML = null
                 res.docs.forEach(doc => {
-                    console.log(doc.data().time)
+
                     document.getElementById('messageBoard').innerHTML += `<p>` + doc.data().author + `: ` + doc.data().wrote + `</p>`
                 })
             });
@@ -27,9 +29,12 @@ export default function Chat() {
 
     //write message
     const writeMessage = async () => {
-
+        if (!projectAuth.currentUser) {
+            document.location.href = document.location.origin + "/login"
+        }
         let writer = projectAuth.currentUser.email
         let message = { wrote: document.getElementById('chatValue').value, author: writer, time: timestamp() }
+
 
         try {
             await projectFirestore.collection('messages').add(message)

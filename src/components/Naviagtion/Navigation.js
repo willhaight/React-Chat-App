@@ -8,25 +8,16 @@ const Nav = function () {
     return (
         <div className="Navigation">
             <Link to={`/`}><p>Home</p></Link>
-            <Link to={`/login`}><p>Login</p></Link>
-            <Link to={`/signup`}><p>Sign Up</p></Link>
             <Link to={`/about`}><p>About</p></Link>
+            <Link to={`/signup`}><p>Sign Up</p></Link>
+            <Link to={`/login`}><p>Login</p></Link>
             <div className="btns">
-                <button onClick={check}>Check</button>
-                <button onClick={logout}>Logout</button>
+                <button className="navBTN" onClick={logout}>Logout</button>
             </div>
         </div>
     )
 }
-const check = async () => {
-    if (projectAuth.currentUser) {
-        console.log(projectAuth.currentUser.email)
 
-    } else {
-        console.log('no user logged in')
-
-    }
-}
 const logout = async () => {
     let nextUrl = document.location.origin + '/login'
 
