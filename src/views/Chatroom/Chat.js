@@ -82,14 +82,14 @@ export default function Chat() {
 
 
                 </div>
+                <div className="chat-error">
+                    <div id="error"></div>
+                </div>
                 <div className="controlCenter">
                     <input type="text" id="chatValue" placeholder="write a message..."></input>
 
                     <button onClick={writeMessage} id="sendBtn">Send</button>
 
-                </div>
-                <div className="chat-error">
-                    <div id="error"></div>
                 </div>
             </div>
         </div>

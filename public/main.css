@@ -56,8 +56,8 @@ body {
 }
 #messageBoard{
     max-width: 100%;
-    min-height: 20vw;
-    max-height: 60vw;
+    min-height: 10vw;
+    max-height: 15vw;
     overflow-x: hidden;
     overflow-y: auto;
     padding-top:5vw;
@@ -65,7 +65,6 @@ body {
     padding-right:5vw;
     display:flex;
     flex-direction: column-reverse;
-    max-height: 20vw;
 }
 .controlCenter {
     margin-top: 5vw;
@@ -93,10 +92,10 @@ body {
 #messageBoard p{
     font-size: 2vw;
     padding:0;
-    padding-left: 2vw;
-    padding-right: 2vw;
-    padding-top: 2vw;
-    padding-bottom: 2vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
     margin:0;
     margin-top: 1vw;
     background-color: rgb(44, 113, 83);
@@ -113,8 +112,42 @@ body {
 }
 #sendBtn{
 width:5vw;
+background-color: hsl(139, 100%, 48%);
+margin-bottom:1vw;
+font-size: 1.3vw;
 }
 #chatValue{
     height:2vw;
     width:15vw;
+    border-radius: 15%;
+    padding-left:.3vw;
+    margin-bottom: 1vw;
 }
+@media only screen and (max-width: 800px) {
+    #messageBoard {
+        min-height: 40vw;
+        max-height: 60vw;
+    }
+   
+    #sendBtn{
+        width:10vw;
+        background-color: hsl(139, 100%, 48%);
+        margin-bottom:1vw;
+        font-size: 2vw;
+        }
+        #chatValue{
+            height:4vw;
+            width:25vw;
+            border-radius: 15%;
+            padding-left:.3vw;
+            margin-bottom: 1vw;
+        }
+        #messageBoard p {
+            font-size: 5vw;
+        }
+        .Navigation{
+            display:flex;
+            width:100vw;
+            justify-content: space-around;
+        }
+  }

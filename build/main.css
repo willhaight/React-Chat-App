@@ -113,8 +113,13 @@ body {
 }
 #sendBtn{
 width:5vw;
+background-color: hsl(139, 100%, 48%);
+margin-bottom:1vw;
 }
 #chatValue{
     height:2vw;
     width:15vw;
+    border-radius: 15%;
+    padding-left:.3vw;
+    margin-bottom: 1vw;
 }
