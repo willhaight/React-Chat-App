@@ -9,6 +9,7 @@ import { timestamp } from "../../firebase/config";
 export default function Chat() {
 
     //pull messages and append
+
     const update = async () => {
 
         projectFirestore.collection("messages")
@@ -19,8 +20,9 @@ export default function Chat() {
 
                     document.getElementById('messageBoard').innerHTML += `<p>` + doc.data().author + `: ` + doc.data().wrote + `</p>`
                 })
-            });
 
+
+            });
 
 
     }
@@ -34,18 +36,38 @@ export default function Chat() {
         }
         let writer = projectAuth.currentUser.email
         let message = { wrote: document.getElementById('chatValue').value, author: writer, time: timestamp() }
+        let error = null;
+        if (message.wrote && waiting === false) {
 
-
-        try {
-            await projectFirestore.collection('messages').add(message)
-            projectFirestore.collection('messages').orderBy('time')
-            document.getElementById('chatValue').value = null
-            update()
-        } catch (err) {
-            console.log(err)
+            try {
+                await projectFirestore.collection('messages').add(message)
+                projectFirestore.collection('messages').orderBy('time')
+                document.getElementById('chatValue').value = null
+                error = null
+                document.getElementById('error').innerHTML = null
+                update()
+                waitChange()
+                textWait()
+            } catch (err) {
+                console.log(err)
+                error = "Could not send message. :("
+                document.getElementById('error').innerHTML = `<p>` + error + `</p>`
+            }
+        } else if (waiting === true) {
+            error = "Wait 3 seconds in between sending messages"
+            document.getElementById('error').innerHTML = `<p>` + error + `</p>`
+        } else {
+            error = "Can't send an empty message."
+            document.getElementById('error').innerHTML = `<p>` + error + `</p>`
         }
     }
-
+    let waiting = false
+    const textWait = () => {
+        setTimeout(waitChange, 3000)
+    }
+    function waitChange() {
+        waiting = !waiting
+    }
 
     return (
         <div>
@@ -62,8 +84,12 @@ export default function Chat() {
                 </div>
                 <div className="controlCenter">
                     <input type="text" id="chatValue" placeholder="write a message..."></input>
-                    <button onClick={writeMessage}>Send</button>
 
+                    <button onClick={writeMessage} id="sendBtn">Send</button>
+
+                </div>
+                <div className="chat-error">
+                    <div id="error"></div>
                 </div>
             </div>
         </div>
