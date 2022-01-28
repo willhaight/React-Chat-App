@@ -1,15 +1,10 @@
 import React from "react";
-import Nav from '../../components/Naviagtion/Navigation'
-import ChatTime from '../../components/Chat'
-import '../Chatroom/Chat.css'
-import { projectFirestore } from "../../firebase/config";
-import { projectAuth } from "../../firebase/config";
-import { timestamp } from "../../firebase/config";
+import { projectFirestore } from "../firebase/config"
+import { projectAuth } from "../firebase/config"
+import { timestamp } from "../firebase/config"
 
 
-export default function Chat() {
-
-    //pull messages and append
+function ChatTime() {
 
     const update = async () => {
 
@@ -30,7 +25,6 @@ export default function Chat() {
     update()
 
 
-    //write message
     const writeMessage = async () => {
         if (!projectAuth.currentUser) {
             document.location.href = document.location.origin + "/login"
@@ -71,14 +65,21 @@ export default function Chat() {
     }
 
     return (
-        <div>
-            <div className="nav-holder">
-                <Nav />
+        <div className="content">
+            <div id="messageBoard">
+
+
             </div>
-            <div className="heading">
-                <h1>Welcome to the Chatroom</h1>
+            <div className="chat-error">
+                <div id="error"></div>
             </div>
-            <ChatTime />
+            <div className="controlCenter">
+                <input type="text" id="chatValue" placeholder="write a message..."></input>
+
+                <button onClick={writeMessage} id="sendBtn">Send</button>
+
+            </div>
         </div>
-    );
+    )
 }
+export default ChatTime
